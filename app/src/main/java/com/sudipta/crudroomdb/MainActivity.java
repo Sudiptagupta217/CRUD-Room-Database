@@ -21,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText className;
     private EditText updateName;
     private EditText updateId;
+    private EditText deleteId;
     private Button insertBtn;
     private Button readBtn;
     private Button updateBtn;
+    private Button deleteBtn;
     MyDatabase myDatabase;
 
     @Override
@@ -36,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
         className = findViewById(R.id.className);
         updateId = findViewById(R.id.updateid);
         updateName = findViewById(R.id.updatename);
+        deleteId = findViewById(R.id.deleteId);
         insertBtn = findViewById(R.id.insertBtn);
         readBtn = findViewById(R.id.readBtn);
         updateBtn = findViewById(R.id.updateBtn);
+        deleteBtn = findViewById(R.id.deleteBtn);
 
         setUpDb();
 
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Student> studentList = myDatabase.dao().getStudent();
                 for (int i = 0; i < studentList.size(); i++) {
                     String msg = "ID " + studentList.get(i).getStuId() + " , " +
-                            "Name " + studentList.get(i).getStuFirstName() +" "+ studentList.get(i).getStuLastName() + " , " +
+                            "Name " + studentList.get(i).getStuFirstName() + " " + studentList.get(i).getStuLastName() + " , " +
                             "Class " + studentList.get(i).getStuClass();
                     Log.d("STUDENT_DATA ", msg);
                 }
@@ -70,10 +74,19 @@ public class MainActivity extends AppCompatActivity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDatabase.dao().updatedtu(updateName.getText().toString(), Integer.parseInt(updateId.getText().toString()));
+                myDatabase.dao().updatestu(updateName.getText().toString(), Integer.parseInt(updateId.getText().toString()));
+            }
+        });
+
+        //delete
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDatabase.dao().deletestu(Integer.parseInt(deleteId.getText().toString()));
             }
         });
     }
+
 
     // create a detabase object methad
     private void setUpDb() {

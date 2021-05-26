@@ -64,6 +64,17 @@
             android:text="update"
             android:layout_gravity="center"/>
 
+        <EditText
+            android:id="@+id/deleteId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Delete for ID" />
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

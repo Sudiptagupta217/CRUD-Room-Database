@@ -16,5 +16,8 @@ public interface DAO {       //DATA ACCESS OBJECT
     List<Student> getStudent();
 
     @Query("Update Student set stuFirstName=:stuName  where stuId = :stuID ")
-    void updatedtu(String stuName, int stuID);
+    void updatestu(String stuName, int stuID);
+
+    @Query("Delete from Student where stuId = :stuID")
+    void deletestu(int stuID);
 }
