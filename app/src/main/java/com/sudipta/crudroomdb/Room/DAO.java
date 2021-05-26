@@ -1,7 +1,10 @@
 package com.sudipta.crudroomdb.Room;
 
+import java.util.List;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 
 @Dao
 public interface DAO {       //DATA ACCESS OBJECT
@@ -9,5 +12,6 @@ public interface DAO {       //DATA ACCESS OBJECT
     @Insert
     public void studentInsertion(Student student);
 
-
+    @Query("Select * from Student")
+    List<Student> getStudent();
 }
