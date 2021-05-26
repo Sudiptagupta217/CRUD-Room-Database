@@ -14,4 +14,7 @@ public interface DAO {       //DATA ACCESS OBJECT
 
     @Query("Select * from Student")
     List<Student> getStudent();
+
+    @Query("Update Student set stuFirstName=:stuName  where stuId = :stuID ")
+    void updatedtu(String stuName, int stuID);
 }

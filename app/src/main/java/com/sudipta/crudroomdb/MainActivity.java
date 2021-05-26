@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstName;
     private EditText lastName;
     private EditText className;
+    private EditText updateName;
+    private EditText updateId;
     private Button insertBtn;
     private Button readBtn;
+    private Button updateBtn;
     MyDatabase myDatabase;
 
     @Override
@@ -31,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         className = findViewById(R.id.className);
+        updateId = findViewById(R.id.updateid);
+        updateName = findViewById(R.id.updatename);
         insertBtn = findViewById(R.id.insertBtn);
         readBtn = findViewById(R.id.readBtn);
+        updateBtn = findViewById(R.id.updateBtn);
 
         setUpDb();
 
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //read data
         readBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,8 +66,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //update data
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDatabase.dao().updatedtu(updateName.getText().toString(), Integer.parseInt(updateId.getText().toString()));
+            }
+        });
     }
 
+    // create a detabase object methad
     private void setUpDb() {
         myDatabase = Room.databaseBuilder(MainActivity.this, MyDatabase.class, "studentDB")
                 .allowMainThreadQueries().build();
